@@ -2,7 +2,7 @@ import React from 'react';
 
 const JobsListFilter = () => {
   return (
-    <div className="hidden md:block ml-2 bg-white shadow-1 rounded-xl my-6 w-fit pt-6 pb-5 px-7 min-w-[280px]">
+    <div className="hidden md:block h-fit ml-2 bg-white shadow-1 rounded-xl my-6 w-fit pt-6 pb-5 px-7 min-w-[280px]">
       <div className="border-b pt-7 pb-4 font-bold">All Filters</div>
 
       <div className="py-5 border-b flex flex-col gap-4">

@@ -7,3 +7,47 @@
     text-wrap: balance;
   }
 }
+
+
+
+
+.show-button {
+  display: flex;
+  height: 50px;
+  align-items: center;
+}
+
+.sidebar-filter-data {
+  background-color: rgba(0, 0, 0, 0.852);
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  transition: 850ms;
+}
+
+.sidebar-filter-data.active {
+  right: 0;
+  transition: 350ms;
+}
+
+.hide-icon {
+  /* font-size: 25px; */
+  /* width: fit-content; */
+  /* color: #fff; */
+  /* cursor: pointer; */
+}
+
+.filter-data {
+  color: red;
+  display: flex;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  gap: 45px;
+  width: 50%;
+  padding: 8px 24px;
+}

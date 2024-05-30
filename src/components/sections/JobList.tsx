@@ -1974,11 +1974,14 @@ const JobList = () => {
           job_salary_currency,
           job_max_salary,
           job_title,
+          job_salary_period,
+          job_employment_type,
+          job_country,
           employer_logo,
         }) => (
           <div
             key={job_id}
-            className="max-w-[700px] mr-2 bg-white shadow-1 rounded-xl my-6 w-fit h-fit pt-6 pb-5 px-6"
+            className="max-w-[700px] mx-2 md:mr-2 bg-white shadow-1 rounded-xl my-6 w-fit h-fit pt-6 pb-5 px-3 md:px-6"
           >
             <Link href="/jobs/description" key={job_id}>
               <h3 className="font-bold">{employer_name}</h3>
@@ -1991,22 +1994,25 @@ const JobList = () => {
                 </span>
               </div>
               <div className="mt-6 font-medium">
-                <div className="mb-4 flex items-center gap-3 text-sm text-gray-1">
+                <div className="mb-4 flex flex-wrap items-center gap-3 text-sm text-gray-1">
                   <span className="flex items-center gap-2">
                     <BsBriefcase className="text-lg" />
                     0-5 Yrs
                   </span>
                   <span className="text-gray-400">|</span>
                   <span>
-                    {job_salary_currency === 'USD'
-                      ? '$'
-                      : `${job_salary_currency} "-" ${job_max_salary}`}
-                    {job_min_salary ? job_min_salary : '₹  Not Disclosed'}
+                    {job_salary_currency === 'USD' && '$'}
+
+                    {job_min_salary
+                      ? `${job_min_salary} - ${job_salary_currency === 'USD' && '$'}${job_max_salary}`
+                      : '₹  Not Disclosed'} {job_salary_period && 'a'}  {job_salary_period?.toLowerCase()}
                   </span>
+                  <span className="text-gray-400">|</span>
+                  <span className='capitalize'>{job_employment_type}</span>
                   <span className="text-gray-400">|</span>
                   <span className="flex items-center gap-2">
                     <CiLocationOn className="text-lg" />
-                    {job_city}
+                    {job_city}, {job_country}
                   </span>
                 </div>
                 <div className="flex items-start lg:items-center gap-2">
@@ -2023,12 +2029,12 @@ const JobList = () => {
                 <span>Medicine</span>
               </div>
               <div className="text-[11px] text-gray-2 mt-4">30+ Day Ago</div>
-              <Image
-                src={employer_logo}
+              {/* <Image
+                src={employer_logo  || null}
                 alt="Job Listing"
                 width={500} // specify the width of the image
                 height={300} // specify the height of the image
-              />
+              /> */}
             </Link>
           </div>
         )

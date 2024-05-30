@@ -13,7 +13,7 @@ type Props = {};
 const Footer = (props: Props) => {
   return (
     <div className="font-satoshi max-w-[1120px] mx-auto bg-white py-14">
-      <div className="mx-2 flex gap-20">
+      <div className="mx-4 md:mx-2 flex flex-col md:flex-row gap-2 md:gap-20">
         <div>
           <Link href="/">
             <Image
@@ -34,7 +34,7 @@ const Footer = (props: Props) => {
             </div>
           </div>
         </div>
-        <div className="flex gap-10 pt-4">
+        <div className="flex flex-wrap gap-10 pt-4">
           <ul className="flex flex-col gap-4">
             <li>About us</li>
             <li>Careers</li>
