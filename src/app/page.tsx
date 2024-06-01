@@ -12,8 +12,8 @@ const Home = () => {
       {/* <AuthContextProvider> */}
         <Header />
         <main className="font-satoshi">
-          <JobDescription />
-          {/* <JobSearch /> */}
+          {/* <JobDescription /> */}
+          <JobSearch />
         </main>
         <Footer />
       {/* </AuthContextProvider> */}
