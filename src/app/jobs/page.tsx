@@ -1,5 +1,3 @@
-import Footer from '@/components/layout/Footer';
-import Header from '@/components/layout/Header';
 import JobList from '@/components/sections/JobList';
 import JobsListFilter from '@/components/sections/JobsListFilter';
 import React from 'react';

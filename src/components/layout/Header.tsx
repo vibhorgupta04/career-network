@@ -44,12 +44,14 @@ const Header = () => {
   };
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
     const checkAuthentication = async () => {
       setLoading(true);
       await new Promise((resolve) => setTimeout(resolve, 50));
       setLoading(false);
     };
     checkAuthentication();
+  }
   }, [user]);
 
   const toggleShowSidebarFilter = () => {
@@ -57,13 +59,13 @@ const Header = () => {
     setShowPassword(false);
   };
 
-  // if (loading) {
-  //   return (
-  //     <div className="h-screen w-screen flex items-center justify-center">
-  //       <Loading />
-  //     </div>
-  //   );
-  // }
+  if (loading) {
+    return (
+      <div className="h-screen w-screen flex items-center justify-center">
+        <Loading />
+      </div>
+    );
+  }
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -98,8 +100,7 @@ const Header = () => {
           </Link>
           <div className="hidden md:flex gap-6 text-gray-700">
             <Link href="/jobs">Jobs</Link>
-            <span>Companies</span>
-            <span>Services</span>
+            <Link href='/companies'>Companies</Link>
           </div>
         </div>
         {loading ? null : !user ? (
@@ -196,7 +197,7 @@ const Header = () => {
                   Forgot Password?
                 </div>
               </div>
-              <button className="py-2 bg-blue-1 rounded-full text-white font-bold">
+              <button type="submit" className="py-2 bg-blue-1 rounded-full text-white font-bold">
                 Login
               </button>
               <div className="text-blue-1 font-bold mt-4 text-center">

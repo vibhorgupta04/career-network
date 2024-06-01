@@ -1,3 +1,4 @@
+'use client';
 import { useContext, createContext, useState, useEffect } from 'react';
 import {
   signInWithPopup,
@@ -22,9 +23,9 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
+      const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+        setUser(currentUser);
+      });
     return () => unsubscribe();
   }, [user]);
 
