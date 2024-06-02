@@ -29,6 +29,12 @@ const Login = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
+  useEffect(() => {
+    // If the user is authenticated, redirect to the home page
+    if (user) {
+      router.push('/');
+    }
+  }, [user, router]);
   // Handle Google Sign-In
   const handleSignIn = async () => {
     setLoading(true);

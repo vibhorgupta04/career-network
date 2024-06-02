@@ -57,7 +57,6 @@ const JobDescription = ({ jobId }: { jobId: any }) => {
 
   const handleSaveJob = () => {
     const jobsFromLS = JSON.parse(localStorage.getItem('savedJobs') || '[]');
-    console.log(jobsFromLS);
     if (saveJob) {
       // Remove job from saved jobs
       const updatedJobs = jobsFromLS.filter((job: any) => job.id !== jobId);

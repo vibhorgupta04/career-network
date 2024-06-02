@@ -98,7 +98,7 @@ const SignUp = () => {
         <div className="pt-6 pb-4">
           <h1 className="text-xl font-semibold">Create your Career profile</h1>
           <p className="text-sm text-gray-500">
-            Search & apply to jobs from India's No.1 Job Site
+            Search & apply to jobs from India&apos;s No.1 Job Site
           </p>
         </div>
         <Formik

@@ -1,11 +1,12 @@
 'use client';
 
+import Loading from '@/components/layout/Loading';
 import JobList from '@/components/sections/JobList';
 import JobsListFilter from '@/components/sections/JobsListFilter';
 import { useSearchParams } from 'next/navigation';
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 
-const Jobs = () => {
+const Search = () => {
   const searchParams = useSearchParams();
   const keyword = searchParams.get('keyword') || '';
   const [filters, setFilters] = useState<any>({
@@ -22,6 +23,13 @@ const Jobs = () => {
         <JobList keyword={keyword} filters={filters} />
       </div>
     </div>
+  );
+};
+const Jobs = () => {
+  return (
+    <Suspense fallback={<Loading />}>
+      <Search />
+    </Suspense>
   );
 };
 

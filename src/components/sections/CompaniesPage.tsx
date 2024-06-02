@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Loading from '../layout/Loading';
 import { fetchCompanies } from '@/api/user';
 
-const CompaniesPage = () => {
+const CompaniesPage = ({ filters }: { filters: any }) => {
   const [loading, setLoading] = useState(false);
   const [companies, setCompanies] = useState<any>({});
   const [hasError, setHasError] = useState<boolean>(false);
@@ -36,9 +36,10 @@ const CompaniesPage = () => {
   console.log('companies', companies);
   return (
     <section className="max-w-6xl mx-auto">
-      {companies.length > 0 && companies?.map((company: any, index: number) => (
-        <div key={index}>Hello</div>
-      ))}
+      {companies.length > 0 &&
+        companies?.map((company: any, index: number) => (
+          <div key={index}>Hello</div>
+        ))}
     </section>
   );
 };
