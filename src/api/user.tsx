@@ -1,8 +1,8 @@
-import axios from 'axios';
+import db from './db/db.json'
 
 export const fetchJobs = async () => {
   try {
-    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/jobs`);
+    const response = { data: db.jobs};
     return { response, error: false };
   } catch (error) {
     return { data: null, error: true };
@@ -10,7 +10,8 @@ export const fetchJobs = async () => {
 };
 export const fetchJobDetails = async (jobId: any) => {
   try {
-    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/jobs/${jobId}`);
+    const foundJob = db.jobs.filter(job => job.id === jobId);
+    const response = foundJob.length > 0  ? { data: foundJob[0] } : { data : null };
     return { response, error: false };
   } catch (error) {
     return { data: null, error: true };
@@ -19,7 +20,7 @@ export const fetchJobDetails = async (jobId: any) => {
 
 export const fetchCompanies = async () => {
   try {
-    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/companies`);
+    const response = { data: db.companies};
     return { response, error: false };
   } catch (error) {
     return { data: null, error: true };

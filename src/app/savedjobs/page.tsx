@@ -15,19 +15,26 @@ const SavedJobs = () => {
   return (
     <section className="bg-gray-3">
       <div className="max-w-6xl mx-auto">
-        <div className="py-6 text-center ">
+        <div className="py-6 ">
           {savedJobs?.length == 0 ? (
-            <div className="h-[60vh] text-center flex gap-4 flex-col items-center justify-center">
-              <IoBookmark className="text-8xl text-blue-1" />
-
-              <h3 className="text-xl font-semibold">No saved jobs</h3>
-              <p>
-                Tap the bookmark on any job that interests you to save it for
-                later
-              </p>
+            <div className="">
+              <div className="h-[40vh] flex gap-4 flex-col items-center justify-center">
+                <Image
+                  src={'/images/no-saved-jobs.png'}
+                  alt="logo"
+                  className="w-40 h-40"
+                  width={200}
+                  height={10}
+                />
+                {/* <IoBookmark className="text-8xl text-blue-1" /> */}
+                <h3 className="text-xl font-semibold">No saved jobs!</h3>
+                <p className='text-gray-500'>No saved jobs! Tap on save icon against a job to save it</p>
+                <Link href="/jobs" className='bg-blue-1 text-white rounded-full py-2 px-4 text-sm font-semibold'>Search jobs</Link>
+              </div>
             </div>
           ) : (
             <div>
+              <h3 className="mx-2 text-xl font-semibold">Jobs saved by you</h3>
               {savedJobs &&
                 savedJobs.map(
                   ({
@@ -64,7 +71,9 @@ const SavedJobs = () => {
                             />
                           )}
                           <div>
-                            <span className="font-medium text-base">{employer_name}</span>
+                            <span className="font-medium text-base">
+                              {employer_name}
+                            </span>
                             <span className="pt-1 flex items-center gap-2">
                               {job_city}, {job_country}
                             </span>

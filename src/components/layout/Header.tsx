@@ -118,7 +118,7 @@ const Header = () => {
           <div className="hidden md:flex gap-6 text-gray-700">
             <Link href="/jobs">Jobs</Link>
             <Link href="/companies">Companies</Link>
-            <Link href="/saved" className="flex items-center gap-1">
+            <Link href="/savedjobs" className="flex items-center gap-1">
               Saved
               <p className="text-sm bg-blue-1 text-white w-4 h-4 flex justify-center items-center rounded-full">
                 {savedJobs?.length}
@@ -132,14 +132,14 @@ const Header = () => {
             className="relative flex items-center gap-4 py-1 px-2"
             onClick={() => setOpenDropdown(!openDropdown)}
           >
-            <Image
+            {user?.photoURL && <Image
               src={user?.photoURL}
               alt="user photo"
               className="w-6 h-6 rounded-full"
               width={200}
               height={10}
-            />
-            <p>{user.displayName}</p>
+            />}
+            {user?.displayName && <p>{user?.displayName}</p>}
 
             {openDropdown && (
               <div className="absolute top-8 right-4 w-full shadow-1 ring-1 ring-gray-200 bg-gray-100 rounded text-gray-600 p-4">
