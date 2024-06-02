@@ -56,7 +56,7 @@ const JobList = ({ keyword }: { keyword?: string }) => {
         }) => (
           <div
             key={id}
-            className="relative max-w-[700px] mx-2 md:mr-2 bg-white shadow-1 rounded-xl my-6 w-fit h-fit pt-6 pb-5 px-3 md:px-6"
+            className="relative z-0 max-w-[700px] mx-2 md:mr-2 bg-white shadow-1 rounded-xl my-6 w-fit h-fit pt-6 pb-5 px-3 md:px-6"
           >
             <Link href={user ? `/jobs/description/${id}` : '/login'} key={id}>
               <h3 className="font-bold">{employer_name}</h3>
