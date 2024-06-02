@@ -1,16 +1,27 @@
 'use client';
 import { UseAppContext } from '@/context/AppContext';
 import moment from 'moment';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { IoBookmark } from 'react-icons/io5';
 import { IoTimeOutline } from 'react-icons/io5';
 import { IoMdHome } from 'react-icons/io';
 import { IoBookOutline } from 'react-icons/io5';
 import { BsBriefcase } from 'react-icons/bs';
 import Link from 'next/link';
+import { UserAuth } from '@/context/AuthContext';
+import { useEffect } from 'react';
 
 const SavedJobs = () => {
+  const router = useRouter();
   const { savedJobs } = UseAppContext();
+  const { user } = UserAuth();
+
+  useEffect(() => {
+    // If the user is not authenticated, redirect to the login page
+    if (!user) {
+      router.push('/login');
+    }
+  }, [user, router]);
 
   return (
     <section className="bg-gray-3">
@@ -28,8 +39,15 @@ const SavedJobs = () => {
                 />
                 {/* <IoBookmark className="text-8xl text-blue-1" /> */}
                 <h3 className="text-xl font-semibold">No saved jobs!</h3>
-                <p className='text-gray-500'>No saved jobs! Tap on save icon against a job to save it</p>
-                <Link href="/jobs" className='bg-blue-1 text-white rounded-full py-2 px-4 text-sm font-semibold'>Search jobs</Link>
+                <p className="text-gray-500">
+                  No saved jobs! Tap on save icon against a job to save it
+                </p>
+                <Link
+                  href="/jobs"
+                  className="bg-blue-1 text-white rounded-full py-2 px-4 text-sm font-semibold"
+                >
+                  Search jobs
+                </Link>
               </div>
             </div>
           ) : (

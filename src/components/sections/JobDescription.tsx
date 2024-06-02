@@ -11,13 +11,24 @@ import { BsBriefcase } from 'react-icons/bs';
 import { IoBookmark } from 'react-icons/io5';
 import { IoBookmarkOutline } from 'react-icons/io5';
 import { UseAppContext } from '@/context/AppContext';
+import { UserAuth } from '@/context/AuthContext';
+import { useRouter } from 'next/navigation';
 
 const JobDescription = ({ jobId }: { jobId: any }) => {
+  const router = useRouter();
   const { setSavedJobs } = UseAppContext();
+  const { user } = UserAuth();
   const [loading, setLoading] = useState(false);
   const [jobDetails, setJobDetails] = useState<any>({});
   const [hasError, setHasError] = useState<boolean>(false);
   const [saveJob, setSaveJob] = useState(false);
+
+  useEffect(() => {
+    // If the user is not authenticated, redirect to the login page
+    if (!user) {
+      router.push('/login');
+    }
+  }, [user, router]);
 
   useEffect(() => {
     if (jobId) {
@@ -51,13 +62,13 @@ const JobDescription = ({ jobId }: { jobId: any }) => {
       // Remove job from saved jobs
       const updatedJobs = jobsFromLS.filter((job: any) => job.id !== jobId);
       localStorage.setItem('savedJobs', JSON.stringify(updatedJobs));
-    setSavedJobs(updatedJobs)
+      setSavedJobs(updatedJobs);
       setSaveJob(false);
     } else {
       // Add job to saved jobs
       jobsFromLS.push(jobDetails);
       localStorage.setItem('savedJobs', JSON.stringify(jobsFromLS));
-    setSavedJobs(jobsFromLS)
+      setSavedJobs(jobsFromLS);
       setSaveJob(true);
     }
   };
@@ -167,6 +178,7 @@ const JobDescription = ({ jobId }: { jobId: any }) => {
                     className="rounded-full ring-1 ring-blue-1 px-4 py-2 text-blue-1"
                     href={apply_link}
                     key={apply_link}
+                    target="_blank"
                   >
                     Apply on {publisher}
                   </a>

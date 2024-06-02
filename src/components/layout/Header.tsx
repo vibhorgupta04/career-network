@@ -10,7 +10,6 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '@/firebase/firebase';
 import Loading from './Loading';
 import { UseAppContext } from '@/context/AppContext';
-import Login from '../sections/Login';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -70,7 +69,11 @@ const Header = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
       const user: any = userCredential.user;
       localStorage.setItem('token', user?.accessToken);
       localStorage.setItem('user', JSON.stringify(user));
@@ -97,87 +100,93 @@ const Header = () => {
   }, [user]);
 
   // Render loading screen if loading
-  if (loading) {
-    return (
-      <div className="h-screen w-screen flex items-center justify-center">
-        <Loading />
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div className="h-screen w-screen flex items-center justify-center">
+  //       <Loading />
+  //     </div>
+  //   );
+  // }
+
+  console.log(user);
 
   return (
     <header className="bg-white border-b font-satoshi">
       <ToastContainer />
-      <div className="flex items-center justify-between px-2 max-w-6xl mx-auto">
-        <div className="flex items-center gap-10">
-          {/* Logo */}
-          <Link href="/">
-            <Image src="/logo.png" alt="logo" width={200} height={10} />
-          </Link>
-          {/* Navigation links */}
-          <div className="hidden md:flex gap-6 text-gray-700">
-            <Link href="/jobs">Jobs</Link>
-            <Link href="/companies">Companies</Link>
-            <Link href="/savedjobs" className="flex items-center gap-1">
-              Saved
-              <p className="text-sm bg-blue-1 text-white w-4 h-4 flex justify-center items-center rounded-full">
-                {savedJobs?.length}
-              </p>
-            </Link>
-          </div>
+      {loading ? (
+        <div className="h-screen w-screen flex items-center justify-center">
+          <Loading />
         </div>
-        {/* Authentication buttons */}
-        {user ? (
-          <div
-            className="relative flex items-center gap-4 py-1 px-2"
-            onClick={() => setOpenDropdown(!openDropdown)}
-          >
-            {user?.photoURL && <Image
-              src={user?.photoURL}
-              alt="user photo"
-              className="w-6 h-6 rounded-full"
-              width={200}
-              height={10}
-            />}
-            {user?.displayName && <p>{user?.displayName}</p>}
-
-            {openDropdown && (
-              <div className="absolute top-8 right-4 w-full shadow-1 ring-1 ring-gray-200 bg-gray-100 rounded text-gray-600 p-4">
-                <p
-                  className="flex items-center gap-4 cursor-pointer hover:text-gray-800"
-                  onClick={handleSignOut}
+      ) : (
+        <div className="flex items-center justify-between px-2 max-w-6xl mx-auto">
+          <div className="flex items-center gap-10">
+            {/* Logo */}
+            <Link href="/">
+              <Image src="/logo.png" alt="logo" width={200} height={10} />
+            </Link>
+            {/* Navigation links */}
+            <div className="hidden md:flex gap-6 text-gray-700">
+              <Link href="/jobs">Jobs</Link>
+              <Link href="/companies">Companies</Link>
+              {user && (
+                <Link
+                  href={user ? '/savedjobs' : '/login'}
+                  className="flex items-center gap-1"
                 >
-                  <IoLogOutOutline className="text-xl" /> Sign out
-                </p>
-              </div>
-            )}
+                  Saved
+                  <p className="text-sm bg-blue-1 text-white w-4 h-4 flex justify-center items-center rounded-full">
+                    {savedJobs?.length}
+                  </p>
+                </Link>
+              )}
+            </div>
           </div>
-        ) : (
-          <div className="flex gap-4">
-            <button
-              className="ring-1 ring-[#275DF5] rounded-full py-2 px-6 text-[#275DF5]"
-              onClick={toggleShowSidebarFilter}
+          {/* Authentication buttons */}
+          {user ? (
+            <div
+              className="relative flex items-center gap-4 py-1 px-2"
+              onClick={() => setOpenDropdown(!openDropdown)}
             >
-              Login
-            </button>
-            <button className="bg-[#F05537] text-white font-bold px-6 py-2 rounded-full">
-              Register
-            </button>
-          </div>
-        )}
-      </div>
+              {user?.photoURL && (
+                <Image
+                  src={user?.photoURL}
+                  alt="user photo"
+                  className="w-6 h-6 rounded-full"
+                  width={200}
+                  height={10}
+                />
+              )}
+              {user?.displayName && <p>{user?.displayName}</p>}
 
-      {/* Sidebar for login form */}
-      {showSidebarFilter && (
-        <Login
-          handleSubmit={handleSubmit}
-          email={email}
-          setEmail={setEmail}
-          password={password}
-          setPassword={setPassword}
-          handleSignIn={handleSignIn}
-          toggleShowSidebarFilter={toggleShowSidebarFilter}
-        />
+              {openDropdown && (
+                <div className="absolute top-8 right-4 w-full shadow-1 ring-1 ring-gray-200 bg-gray-100 rounded text-gray-600 p-4">
+                  <p
+                    className="flex items-center gap-4 cursor-pointer hover:text-gray-800"
+                    onClick={handleSignOut}
+                  >
+                    <IoLogOutOutline className="text-xl" /> Sign out
+                  </p>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="flex gap-4">
+              <Link
+                href={'/login'}
+                className="ring-1 ring-[#275DF5] rounded-full py-2 px-6 text-[#275DF5]"
+                onClick={toggleShowSidebarFilter}
+              >
+                Login
+              </Link>
+              <Link
+                href={'/register'}
+                className="bg-[#F05537] text-white font-bold px-6 py-2 rounded-full"
+              >
+                Register
+              </Link>
+            </div>
+          )}
+        </div>
       )}
     </header>
   );

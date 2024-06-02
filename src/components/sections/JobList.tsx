@@ -1,6 +1,6 @@
 'use client';
 
-import { fetchJobs } from '@/api/user';
+import { fetchJobs, fetchJobsByKeyword } from '@/api/user';
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { CiLocationOn } from 'react-icons/ci';
@@ -8,8 +8,11 @@ import { BsBriefcase } from 'react-icons/bs';
 import { HiOutlineDocumentText } from 'react-icons/hi2';
 import Image from 'next/image';
 import moment from 'moment';
+import { UserAuth } from '@/context/AuthContext';
 
-const JobList = () => {
+const JobList = ({ keyword }: { keyword?: string }) => {
+  const { user } = UserAuth();
+
   const [loading, setLoading] = useState(false);
   const [jobs, setJobs] = useState<any[]>([]);
   const [hasError, setHasError] = useState<boolean>(false);
@@ -18,7 +21,9 @@ const JobList = () => {
     try {
       const fetchAndSetJobs = async () => {
         setLoading(true);
-        const { response }: any = await fetchJobs();
+        const { response }: any = keyword
+          ? await fetchJobsByKeyword(keyword)
+          : await fetchJobs();
         setJobs(response.data);
         setLoading(false);
       };
@@ -53,11 +58,10 @@ const JobList = () => {
             key={id}
             className="relative max-w-[700px] mx-2 md:mr-2 bg-white shadow-1 rounded-xl my-6 w-fit h-fit pt-6 pb-5 px-3 md:px-6"
           >
-            <Link href={`/jobs/description/${id}`} key={id}>
+            <Link href={user ? `/jobs/description/${id}` : '/login'} key={id}>
               <h3 className="font-bold">{employer_name}</h3>
               <div className="text-xs">
                 <span className="text-sm font-bold">{job_title} </span>
-                {/* <span className="font-bold">⭐ 3.6 </span> */}
                 <span>| </span>
                 <span className="font-medium">
                   {Math.floor(Math.random() * 999)} Reviews
