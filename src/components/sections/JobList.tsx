@@ -24,13 +24,13 @@ const JobList = () => {
       };
       fetchAndSetJobs();
     } catch (error) {
-      setHasError(true)
+      setHasError(true);
       setLoading(false);
     }
   }, []);
 
-  if (loading) return <div>Loading....</div>
-  if (hasError && !loading) return <div>No jobs found.</div>
+  if (loading) return <div>Loading....</div>;
+  if (hasError && !loading) return <div>No jobs found.</div>;
   return (
     <section>
       {jobs?.map(
@@ -51,13 +51,13 @@ const JobList = () => {
         }) => (
           <div
             key={id}
-            className="max-w-[700px] mx-2 md:mr-2 bg-white shadow-1 rounded-xl my-6 w-fit h-fit pt-6 pb-5 px-3 md:px-6"
+            className="relative max-w-[700px] mx-2 md:mr-2 bg-white shadow-1 rounded-xl my-6 w-fit h-fit pt-6 pb-5 px-3 md:px-6"
           >
             <Link href={`/jobs/description/${id}`} key={id}>
               <h3 className="font-bold">{employer_name}</h3>
               <div className="text-xs">
                 <span className="text-sm font-bold">{job_title} </span>
-                <span className="font-bold">⭐ 3.6 </span>
+                {/* <span className="font-bold">⭐ 3.6 </span> */}
                 <span>| </span>
                 <span className="font-medium">
                   {Math.floor(Math.random() * 999)} Reviews
@@ -65,22 +65,19 @@ const JobList = () => {
               </div>
               <div className="mt-6 font-medium">
                 <div className="mb-4 flex flex-wrap items-center gap-3 text-sm text-gray-1">
-                  <span className="flex items-center gap-2">
-                    <BsBriefcase className="text-lg" />
-                    0-5 Yrs
-                  </span>
+                  <span className="capitalize">{job_employment_type}</span>
                   <span className="text-gray-400">|</span>
                   <span>
                     {job_salary_currency === 'USD' && '$'}
                     {job_min_salary
-                      ? `${job_min_salary} - ${job_salary_currency === 'USD' && '$'
-                      }${job_max_salary}`
+                      ? `${job_min_salary} - ${
+                          job_salary_currency === 'USD' && '$'
+                        }${job_max_salary}`
                       : '₹  Not Disclosed'}{' '}
                     {job_salary_period && 'a'}{' '}
                     {job_salary_period?.toLowerCase()}
                   </span>
-                  <span className="text-gray-400">|</span>
-                  <span className="capitalize">{job_employment_type}</span>
+
                   <span className="text-gray-400">|</span>
                   <span className="flex items-center gap-2">
                     <CiLocationOn className="text-lg" />
@@ -94,12 +91,6 @@ const JobList = () => {
                   </span>
                 </div>
               </div>
-              <div className="text-gray-2 text-xs font-medium mt-4">
-                <span>Physician</span>
-                <span>Nuclear Medicine</span>
-                <span>Nuclear Engineering</span>
-                <span>Medicine</span>
-              </div>
               <div className="text-[11px] text-gray-2 mt-4">
                 {moment().diff(moment(job_posted_at_datetime_utc), 'days')}+
                 days ago
@@ -110,7 +101,7 @@ const JobList = () => {
                   alt="Job Listing"
                   width={40} // specify the width of the image
                   height={40} // specify the height of the image
-                  className="absolute w-6 h-6"
+                  className="absolute right-6 top-4 w-8 h-8 object-contain"
                 />
               )}
             </Link>
