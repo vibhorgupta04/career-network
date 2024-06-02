@@ -115,7 +115,7 @@ const Header = () => {
           {/* Mobile Menu */}
           <div
             className="md:hidden my-4"
-            onClick={() => setShowSidebarFilter(true)}
+            onClick={toggleShowSidebarFilter}
           >
             <IoMenuOutline className="text-2xl" />
           </div>
@@ -124,7 +124,7 @@ const Header = () => {
               <div className="relative z-50 h-screen bg-white w-11/12 md:w-[510px] flex items-start p-6 md:p-12 rounded-r-xl">
                 <div className="w-full pt-6">
                   <div className="border-b">
-                    <Link href="/" className="">
+                    <Link href="/" onClick={toggleShowSidebarFilter}>
                       <Image
                         src="/logo.png"
                         alt="logo"
@@ -163,14 +163,14 @@ const Header = () => {
                       <BsSuitcaseLg />
                       Jobs
                     </Link>
-                    <Link
+                    {/* <Link
                       href={'/companies'}
                       className="flex items-center gap-3"
                       onClick={toggleShowSidebarFilter}
                     >
                       <BsBuildings />
                       Companies
-                    </Link>
+                    </Link> */}
                     <div
                       className="flex items-center gap-3"
                       onClick={handleSignOut}

@@ -10,7 +10,7 @@ import Image from 'next/image';
 import moment from 'moment';
 import { UserAuth } from '@/context/AuthContext';
 
-const JobList = ({ keyword }: { keyword?: string }) => {
+const JobList = ({ keyword, filters }: { keyword?: string, filters: any }) => {
   const { user } = UserAuth();
 
   const [loading, setLoading] = useState(false);
@@ -22,8 +22,8 @@ const JobList = ({ keyword }: { keyword?: string }) => {
       const fetchAndSetJobs = async () => {
         setLoading(true);
         const { response }: any = keyword
-          ? await fetchJobsByKeyword(keyword)
-          : await fetchJobs();
+          ? await fetchJobsByKeyword(keyword, filters)
+          : await fetchJobs(filters);
         setJobs(response.data);
         setLoading(false);
       };
@@ -32,7 +32,7 @@ const JobList = ({ keyword }: { keyword?: string }) => {
       setHasError(true);
       setLoading(false);
     }
-  }, []);
+  }, [filters]);
 
   if (loading) return <div>Loading....</div>;
   if (hasError && !loading) return <div>No jobs found.</div>;

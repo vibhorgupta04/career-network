@@ -11,6 +11,10 @@ const config: Config = {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-green': 'linear-gradient(180deg, #fff 0%, #D4FFF2 96.87%)',
+        'gradient-orange':
+          'linear-gradient(180deg, rgba(255,240,226,0) 0%, #FFF0E2 100%)',
+        'gradient-blue':
+          'linear-gradient(180deg, rgba(239,237,255,0) 0%, var(--A200, #EFEDFF) 100%)',
       },
       colors: {
         'blue-1': '#275DF5',

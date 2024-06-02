@@ -43,7 +43,7 @@
       "job_offer_expiration_datetime_utc": "2024-06-26T00:00:00.000Z",
       "job_offer_expiration_timestamp": 1719360000,
       "job_required_experience": {
-        "no_experience_required": false,
+        "no_experience_required": true,
         "required_experience_in_months": null,
         "experience_mentioned": true,
         "experience_preferred": false
@@ -240,7 +240,7 @@
       "job_offer_expiration_datetime_utc": "2024-06-05T16:11:32.000Z",
       "job_offer_expiration_timestamp": 1717603892,
       "job_required_experience": {
-        "no_experience_required": false,
+        "no_experience_required": true,
         "required_experience_in_months": 60,
         "experience_mentioned": true,
         "experience_preferred": false
@@ -1456,7 +1456,7 @@
       "job_offer_expiration_datetime_utc": null,
       "job_offer_expiration_timestamp": null,
       "job_required_experience": {
-        "no_experience_required": false,
+        "no_experience_required": true,
         "required_experience_in_months": 36,
         "experience_mentioned": true,
         "experience_preferred": false
