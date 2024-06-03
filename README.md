@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+---
+title: Job Portal Application
+---
+
+# Job Portal Application
+
+This project is a Next.js application for a job portal, providing users with a platform to browse job listings, view job descriptions, register as users, and utilize search and filter functionalities. The application features a responsive and modern UI.
+
+## Features
+
+1. *Job Listing*: Browse through various job postings available on the platform.
+2. *Job Description*: View detailed descriptions for each job listing.
+3. *Companies Listing*: Explore a list of companies that have job openings.
+4. *Search and Filters for Jobs*: Search for jobs using keywords and filter results based on criteria such as location, job type, and company.
+5. *User Registration*: Register as a user to apply for jobs and manage your profile.
+6. *Responsive and Modern UI*: Enjoy a user-friendly interface that works seamlessly across devices.
+
+## Technologies Used
+
+- *Next.js*: React framework for server-side rendering and static site generation.
+- *TypeScript*: Superset of JavaScript for type safety and better development experience.
+- *Context API*: State management solution for React applications.
+- *Firebase*: Backend-as-a-Service (BaaS) for authentication, database, and hosting.
+- *Tailwind CSS*: Utility-first CSS framework for rapid UI development.
+
+## Folder Structure
+
+The project is organized into the following directories:
+
+- **src/api**: Contains API related logic and functions.
+- **src/app**: Main application setup and configuration.
+- **src/components/layout**: Layout components used across different pages.
+- **src/components/sections**: Specific sections or blocks of the UI.
+- **src/context**: Context API setup for state management.
+- **src/firebase**: Firebase configuration and initialization.
+- **src/styles**: Global and component-specific styles.
 
 ## Getting Started
 
-First, run the development server:
+To get started with the project, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. *Clone the repository*:
+    sh
+    git clone https://github.com/vibhorgupta04/career-network.git
+    cd career-network
+    
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. *Install dependencies*:
+    sh
+    npm install
+    
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. *Set up Firebase*:
+    - Create a Firebase project.
+    - Set up authentication and Firestore database.
+    - Add your Firebase configuration to src/firebase/firebase.ts.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+4. *Run the development server*:
+    sh
+    npm run dev
+    
 
-## Learn More
+    Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-To learn more about Next.js, take a look at the following resources:
+## Deployment on Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The project is deployed on Vercel. Follow these steps to deploy your own version:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Scripts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **dev**: Runs the application in development mode.
+- **build**: Builds the application for production.
+- **start**: Starts the production server.

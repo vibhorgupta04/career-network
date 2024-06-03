@@ -8,11 +8,10 @@ import {
   TiSocialYoutube,
 } from 'react-icons/ti';
 
-type Props = {};
-
-const Footer = (props: Props) => {
+const Footer = () => {
   return (
-    <div className="font-satoshi max-w-[1120px] mx-auto bg-white py-14">
+    <footer className="font-satoshi max-w-[1120px] mx-auto bg-white py-14">
+      {/* Footer Content */}
       <div className="mx-4 md:mx-2 flex flex-col md:flex-row gap-2 md:gap-20">
         <div>
           <Link href="/">
@@ -36,11 +35,19 @@ const Footer = (props: Props) => {
         </div>
         <div className="flex flex-wrap gap-10 pt-4">
           <ul className="flex flex-col gap-4">
-            <li>About us</li>
-            <li>Careers</li>
-            <li>Employer home</li>
-            <li>SiteMap</li>
-            <li>Credits</li>
+            <li>
+              <Link href="/jobs">Jobs</Link>
+            </li>
+            <li>
+              <Link href="/companies">Companies</Link>
+            </li>
+            <li>About Us</li>
+            <li>
+              <Link href="/login">Login</Link>
+            </li>
+            <li>
+              <Link href="/register">Register</Link>
+            </li>
           </ul>
           <ul className="flex flex-col gap-4">
             <li>Help center</li>
@@ -54,7 +61,7 @@ const Footer = (props: Props) => {
           </ul>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 

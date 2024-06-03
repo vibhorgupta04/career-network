@@ -1,5 +1,7 @@
 import React from 'react';
 
+// Loading Component
+
 const Loading = () => {
   return (
     <div id="wifi-loader">
