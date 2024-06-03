@@ -85,7 +85,6 @@ const Login = () => {
 
   return (
     <div className="bg-gray-3 py-6 px-2">
-      // Render loading screen if loading
       {loading ? (
         <div className="h-screen w-screen flex items-center justify-center">
           <Loading />
