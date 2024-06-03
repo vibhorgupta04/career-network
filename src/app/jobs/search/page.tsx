@@ -6,9 +6,12 @@ import JobsListFilter from '@/components/sections/JobsListFilter';
 import { useSearchParams } from 'next/navigation';
 import React, { useState, Suspense } from 'react';
 
+// Component for handling job search and filtering
 const Search = () => {
+  // Get search parameters from the URL
   const searchParams = useSearchParams();
   const keyword = searchParams.get('keyword') || '';
+  // Initialize state for filters
   const [filters, setFilters] = useState<any>({
     remote: false, //job_is_remote
     freshers: false, // job_required_experience.no_experience_required
@@ -25,6 +28,7 @@ const Search = () => {
     </div>
   );
 };
+// Component for rendering the job search with loading fallback
 const Jobs = () => {
   return (
     <Suspense fallback={<Loading />}>

@@ -4,6 +4,7 @@ import { useParams } from 'next/navigation';
 import JobDescription from '@/components/sections/JobDescription';
 
 const JobsDescription = () => {
+  // Get the job ID from the URL params
   const params = useParams();
   const jobId = params?.id;
 

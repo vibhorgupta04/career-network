@@ -6,6 +6,7 @@ interface JobsListFilterProps {
 }
 
 const JobsListFilter: React.FC<any> = ({ filters, setFilters }) => {
+  // Function to handle checkbox changes
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = event.target;
     setFilters((prevFilters: any) => ({
@@ -16,9 +17,11 @@ const JobsListFilter: React.FC<any> = ({ filters, setFilters }) => {
 
   return (
     <div className="hidden md:block h-fit ml-2 bg-white shadow-1 rounded-xl my-6 w-fit pt-6 pb-5 px-7 min-w-[280px]">
+      {/* Filter Header */}
       <div className="border-b pt-7 pb-4 font-bold">All Filters</div>
-
+      {/* Filter Options */}
       <div className="py-5 border-b flex flex-col gap-4">
+        {/* Remote Checkbox */}
         <div className="text-gray-1 text-sm font-medium flex items-center gap-2 cursor-pointer">
           <input
             type="checkbox"
@@ -29,6 +32,7 @@ const JobsListFilter: React.FC<any> = ({ filters, setFilters }) => {
           />
           <label htmlFor="remote">Remote</label>
         </div>
+        {/* Freshers Checkbox */}
         <div className="text-gray-1 text-sm font-medium flex items-center gap-2 cursor-pointer">
           <input
             type="checkbox"
@@ -39,6 +43,7 @@ const JobsListFilter: React.FC<any> = ({ filters, setFilters }) => {
           />
           <label htmlFor="freshers">Freshers</label>
         </div>
+        {/* Experienced Checkbox */}
         <div className="text-gray-1 text-sm font-medium flex items-center gap-2 cursor-pointer">
           <input
             type="checkbox"
@@ -49,6 +54,7 @@ const JobsListFilter: React.FC<any> = ({ filters, setFilters }) => {
           />
           <label htmlFor="experienced">Experienced</label>
         </div>
+        {/* Full-time Checkbox */}
         <div className="text-gray-1 text-sm font-medium flex items-center gap-2 cursor-pointer">
           <input
             type="checkbox"
@@ -59,6 +65,7 @@ const JobsListFilter: React.FC<any> = ({ filters, setFilters }) => {
           />
           <label htmlFor="fulltime">FULLTIME</label>
         </div>
+        {/* Contractor Checkbox */}
         <div className="text-gray-1 text-sm font-medium flex items-center gap-2 cursor-pointer">
           <input
             type="checkbox"

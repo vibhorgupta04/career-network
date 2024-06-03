@@ -14,6 +14,7 @@
   align-items: center;
 }
 
+/* side slider starts */
 .sidebar-filter-data {
   background-color: rgba(0, 0, 0, 0.852);
   display: flex;
@@ -30,8 +31,9 @@
   left: 0;
   transition: 350ms;
 }
+/* side slider ends */
 
-
+/* loader start */
 #wifi-loader {
   --background: #62abff;
   --front-color: #4f29f0;
@@ -229,3 +231,4 @@
     clip-path: inset(0 0 0 100%);
   }
 }
+/* loader ends */

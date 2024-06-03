@@ -12,14 +12,16 @@ const JobSearch = () => {
     router.push(`/jobs/search?keyword=${keyword}`);
   };
   return (
-    <div className='bg-gray-3 pt-6 pb-10'>
+    <div className="bg-gray-3 pt-6 pb-10">
       <div className="max-w-6xl mx-auto">
+        {/* Title and Description */}
         <div className="text-center pt-16 pb-8">
           <h1 className="font-bold text-3xl md:text-4xl mb-2.5">
             Find your dream job now
           </h1>
           <p className="text-xl">5 lakh+ jobs for you to explore</p>
         </div>
+        {/* Job Search Form */}
         <form onSubmit={handleSubmit}>
           <div className="md:w-3/4 mx-2 bg-white md:mx-auto px-4 py-1 md:py-3 shadow-3xl rounded-full flex justify-between items-center">
             <div className="w-full flex items-center">
@@ -40,6 +42,7 @@ const JobSearch = () => {
             </button>
           </div>
         </form>
+        {/* Naukri 360 Section */}
         <div className="w-11/12 mx-auto pr-10 ring-1 ring-gray-300 rounded-xl bg-gradient-green mt-10 mb-6 flex flex-col md:flex-row justify-between md:items-center gap-6 ">
           <Image
             src={'/images/hp-touchpoint.png'}
@@ -79,7 +82,7 @@ const JobSearch = () => {
         </div>
         </div> */}
 
-        {/* 1 */}
+        {/* Video Profile Section */}
         <div className="w-11/12 mx-auto pr-10 ring-1 ring-gray-300 rounded-xl bg-gradient-blue mt-10 mb-6 flex flex-col md:flex-row justify-between md:items-center gap-6 ">
           <div className="lg:w-3/4 px-2 flex flex-col gap-4 pt-6">
             <h4 className="text-xl font-bold">

@@ -83,17 +83,9 @@ const Login = () => {
     }
   }, [user]);
 
-  // Render loading screen if loading
-  // if (loading) {
-  //   return (
-  //     <div className="h-screen w-screen flex items-center justify-center">
-  //       <Loading />
-  //     </div>
-  //   );
-  // }
-
   return (
     <div className="bg-gray-3 py-6 px-2">
+      // Render loading screen if loading
       {loading ? (
         <div className="h-screen w-screen flex items-center justify-center">
           <Loading />
@@ -166,12 +158,6 @@ const Login = () => {
               </button>
             </form>
           </div>
-          {/* <span
-          className="absolute right-6 top-4 text-black cursor-pointer"
-          // onClick={toggleShowSidebarFilter}
-        >
-          <IoMdClose className="text-2xl text-gray-500 hover:text-gray-600" />
-        </span> */}
         </div>
       )}
     </div>

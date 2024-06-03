@@ -33,12 +33,11 @@ const CompaniesPage = ({ filters }: { filters: any }) => {
     );
 
   if (hasError && !loading) return <div>Invalid job.</div>;
-  console.log('companies', companies);
   return (
     <section className="max-w-6xl mx-auto">
       {companies.length > 0 &&
         companies?.map((company: any, index: number) => (
-          <div key={index}>Hello</div>
+          <div key={index}>ds</div>
         ))}
     </section>
   );

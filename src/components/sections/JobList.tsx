@@ -10,7 +10,7 @@ import Image from 'next/image';
 import moment from 'moment';
 import { UserAuth } from '@/context/AuthContext';
 
-const JobList = ({ keyword, filters }: { keyword?: string, filters: any }) => {
+const JobList = ({ keyword, filters }: { keyword?: string; filters: any }) => {
   const { user } = UserAuth();
 
   const [loading, setLoading] = useState(false);
@@ -19,6 +19,7 @@ const JobList = ({ keyword, filters }: { keyword?: string, filters: any }) => {
 
   useEffect(() => {
     try {
+      // Fetch jobs based on keyword and filters
       const fetchAndSetJobs = async () => {
         setLoading(true);
         const { response }: any = keyword
@@ -34,10 +35,13 @@ const JobList = ({ keyword, filters }: { keyword?: string, filters: any }) => {
     }
   }, [filters]);
 
+  // Render loading indicator
   if (loading) return <div>Loading....</div>;
+  // Render error message if no jobs found
   if (hasError && !loading) return <div>No jobs found.</div>;
   return (
     <section>
+      {/* Map over jobs and render job listings */}
       {jobs?.map(
         ({
           employer_name,
@@ -58,7 +62,9 @@ const JobList = ({ keyword, filters }: { keyword?: string, filters: any }) => {
             key={id}
             className="relative z-0 max-w-[700px] mx-2 md:mr-2 bg-white shadow-1 rounded-xl my-6 w-fit h-fit pt-6 pb-5 px-3 md:px-6"
           >
+            {/* Link to job description page */}
             <Link href={user ? `/jobs/description/${id}` : '/login'} key={id}>
+              {/* Job Title and Employer */}
               <h3 className="font-bold">{employer_name}</h3>
               <div className="text-xs">
                 <span className="text-sm font-bold">{job_title} </span>
@@ -67,6 +73,7 @@ const JobList = ({ keyword, filters }: { keyword?: string, filters: any }) => {
                   {Math.floor(Math.random() * 999)} Reviews
                 </span>
               </div>
+              {/* Job Details */}
               <div className="mt-6 font-medium">
                 <div className="mb-4 flex flex-wrap items-center gap-3 text-sm text-gray-1">
                   <span className="capitalize">{job_employment_type}</span>
@@ -88,6 +95,7 @@ const JobList = ({ keyword, filters }: { keyword?: string, filters: any }) => {
                     {job_city}, {job_country}
                   </span>
                 </div>
+                {/* Job Description */}
                 <div className="flex items-start lg:items-center gap-2">
                   <HiOutlineDocumentText className="min-w-4" />
                   <span className="text-gray-1 text-sm font-medium">
@@ -95,10 +103,12 @@ const JobList = ({ keyword, filters }: { keyword?: string, filters: any }) => {
                   </span>
                 </div>
               </div>
+              {/* Posted Time */}
               <div className="text-[11px] text-gray-2 mt-4">
                 {moment().diff(moment(job_posted_at_datetime_utc), 'days')}+
                 days ago
               </div>
+              {/* Employer Logo */}
               {employer_logo && (
                 <Image
                   src={employer_logo}

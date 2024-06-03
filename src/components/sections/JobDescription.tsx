@@ -30,6 +30,7 @@ const JobDescription = ({ jobId }: { jobId: any }) => {
     }
   }, [user, router]);
 
+  // Fetch job details when jobId changes
   useEffect(() => {
     if (jobId) {
       try {
@@ -49,12 +50,14 @@ const JobDescription = ({ jobId }: { jobId: any }) => {
     }
   }, [jobId]);
 
+  // Check if job is saved on component mount
   useEffect(() => {
     const jobsFromLS = JSON.parse(localStorage.getItem('savedJobs') || '[]');
     const isSaved = jobsFromLS.some((job: any) => job?.id === jobId);
     setSaveJob(isSaved);
   }, []);
 
+  // Save or remove job from saved jobs
   const handleSaveJob = () => {
     const jobsFromLS = JSON.parse(localStorage.getItem('savedJobs') || '[]');
     if (saveJob) {
@@ -72,15 +75,17 @@ const JobDescription = ({ jobId }: { jobId: any }) => {
     }
   };
 
+  // Render loading indicator
   if (loading)
     return (
       <div className="h-[60vh] mx-auto flex justify-center items-center">
         <Loading />
       </div>
     );
-
+  // Render error message if job is invalid
   if (hasError && !loading) return <div>Invalid job.</div>;
 
+  // Destructure jobDetails object
   const {
     employer_name,
     job_id,
@@ -98,6 +103,7 @@ const JobDescription = ({ jobId }: { jobId: any }) => {
     job_is_remote,
   } = jobDetails;
 
+  // Parse job description into sections
   const parseJobDescription = (description: any) => {
     const sections = description.split('\n\n');
     const parsedData = sections.map((section: any, index: number) => {
@@ -120,11 +126,14 @@ const JobDescription = ({ jobId }: { jobId: any }) => {
 
   return (
     <section className="max-w-6xl mx-auto">
+      {/* Job Details Section */}
       <div
         key={job_id}
         className="relative w-full mx-2 md:mr-2 bg-white shadow-1 rounded-xl my-6 h-fit pt-6 pb-5 px-3 md:px-6"
       >
+        {/* Job Title */}
         <h3 className="font-bold text-lg md:text-2xl">{job_title} </h3>
+        {/* Employer Details */}
         <div className="text-xs pt-4 flex gap-2">
           {employer_logo && (
             <Image
@@ -142,24 +151,28 @@ const JobDescription = ({ jobId }: { jobId: any }) => {
             </span>
           </div>
         </div>
+        {/* Job Metadata */}
         <div className="mb-2 md:mb-4 flex flex-wrap items-center gap-2 md:gap-3 text-sm text-gray-1">
           <div className=" text-gray-2 mt-4 flex items-center gap-1">
             <IoTimeOutline className="text-lg" />
             {moment().diff(moment(job_posted_at_datetime_utc), 'days')}
             days ago
           </div>
+          {/* Remote Work */}
           {job_is_remote && (
             <div className=" text-gray-2 mt-4 flex items-center gap-1">
               <IoMdHome className="text-lg" />
               Work From Home
             </div>
           )}
+          {/* Employment Type */}
           {job_employment_type && (
             <div className=" text-gray-2 mt-4 flex items-center gap-1">
               <BsBriefcase className="text-lg" />
               {job_employment_type}
             </div>
           )}
+          {/* Required Skills */}
           {!job_required_skills && (
             <div className=" text-gray-2 mt-4 flex items-center gap-1">
               <IoBookOutline className="text-lg" />
@@ -167,6 +180,7 @@ const JobDescription = ({ jobId }: { jobId: any }) => {
             </div>
           )}
         </div>
+        {/* Apply and Save Job Buttons */}
         <div className="border-b my-6"></div>
         <div className="flex flex-col md:flex-row justify-end">
           <div className="flex gap-2">
@@ -182,6 +196,7 @@ const JobDescription = ({ jobId }: { jobId: any }) => {
                     Apply on {publisher}
                   </a>
                 ))}
+              {/* Google Link Button */}
               {job_google_link && (
                 <div className="ml-2 w-fit bg-blue-1 text-white px-4 py-2 rounded-full font-semibold ">
                   <a href={job_google_link} target="_blank">
@@ -204,18 +219,21 @@ const JobDescription = ({ jobId }: { jobId: any }) => {
           {saveJob ? <p className="text-blue-1">SAVED</p> : 'SAVE'}
         </div>
       </div>
+      {/* Job Description Section */}
       {job_description && (
         <div className="w-full mx-2 md:mr-2 bg-white shadow-1 rounded-xl my-6 h-fit pt-6 pb-5 px-3 md:px-6">
           <h3 className="text-xl font-bold">Job Description</h3>
           {parseJobDescription(job_description)}
         </div>
       )}
+      {/* Qualification Section */}
       {job_highlights?.Qualifications && (
         <div className="w-full mx-2 md:mr-2 bg-white shadow-1 rounded-xl my-6 h-fit pt-6 pb-5 px-3 md:px-6">
           <h3 className="text-xl font-bold">Qualification</h3>
           <div className="mt-4">{job_highlights?.Qualifications}</div>
         </div>
       )}
+      {/* Responsibilities Section */}
       {job_highlights?.Responsibilities && (
         <div className="w-full mx-2 md:mr-2 bg-white shadow-1 rounded-xl my-6 h-fit pt-6 pb-5 px-3 md:px-6">
           <h3 className="mt-6 text-xl font-bold">Responsibilities</h3>
