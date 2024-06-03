@@ -64,7 +64,7 @@ const Header = () => {
   }
 
   return (
-    <header className="bg-white border-b font-satoshi">
+    <header className="bg-white/90 border-b font-satoshi sticky top-0 z-50">
       <ToastContainer />
       <div className="flex items-center justify-between px-2 max-w-6xl mx-auto">
         {/* Mobile Menu */}
